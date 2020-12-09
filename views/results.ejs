@@ -1,0 +1,22 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+    <h2>Results</h2>
+    <div class="row" id="displayMovie">
+        <% movies.map((movie) => { %>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="thumbnail">
+                    <a href="/movies/<%=movie.imdbID%>"><img src="
+                        <% if(movie.Poster.length < 4){ %>
+                        /images/no-available.png
+                      <% } else{ %>  
+                        <%= movie.Poster %>
+                     <% } %>" alt="movie poster" class=""></a>
+                </div>
+                <h5><%=movie.Title%>(<%=movie.Year%>)</h5>
+                </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include("partials/footer") -%>

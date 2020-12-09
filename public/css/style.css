@@ -1,0 +1,33 @@
+body {
+    background-color: #0a043c;
+    color: white;
+    font-family: 'Nerko One', cursive;
+    font-family: 'Nerko One', cursive;
+}
+
+.thumbnail img {
+    height:400px;
+    width:100%;
+}
+
+.menu {
+    background-color: #0a043c;
+}
+
+a {
+    color:white;
+}
+
+.header {
+    margin-top: 15px;
+    background-color: #03506f;
+    color: white;
+}
+
+li {
+    color: black;
+}
+img {
+     cursor: pointer; 
+    
+}

@@ -1,0 +1,29 @@
+<%- include("partials/header") -%>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-4">
+            <img src="<% if(movie.Poster.length < 4){ %>
+                /images/no-available.png
+              <% } else{ %>  
+                <%= movie.Poster %>
+             <% } %>">
+        </div>
+        <div class="col-md-12 col-lg-8 rounded">
+            <h2><%=movie.Title%></h2>
+            <ul class="list-group">
+                <li class="list-group-item">Genre: <%=movie.Genre%></li>
+                <li class="list-group-item">Language: <%=movie.Language%></li>
+                <li class="list-group-item">Runtime: <%=movie.Runtime%></li>
+                <li class="list-group-item">Actors: <%=movie.Actors%></li>
+                <li class="list-group-item">Rating: <%=movie.imdbRating%> (<%=movie.imdbVotes%> votes)</li>
+                <br>
+                <br>
+                <h3>Plot</p>
+                <p><%=movie.Plot%></p>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer") -%>

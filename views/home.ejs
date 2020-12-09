@@ -1,0 +1,31 @@
+<%- include("partials/header") -%>
+
+    
+    <div class="container mb-4">
+        <div class="jumbotron jumbotron-fluid mb-5 header rounded">
+            <div class="container">
+            <h1 class="display-4">Moovie</h1>
+            <p class="lead">Thrilled to discover what the movies industry has to offer?, So we are</p>
+            </div>
+        </div>
+        <hr>
+        <form method="GET" id="searchForm" action="/results">
+            <div class="row mt-5">
+                <div class="col-lg-8 col-sm-12">
+                    <input type="text" class="form-control" placeholder="Search for moovies" id="searchQuery" name="searchQuery">
+                </div>
+                
+                <div class="input-group-append col-lg-4">
+                    <button class="btn btn-outline-success" type="submit" id="searchButton">search</button>
+                </div>
+                
+            </div>
+        </form>
+
+        <div class="container">
+            <div class="row" id="displayMovie">
+    
+            </div>
+        </div>
+    </div>
+<%- include("partials/footer") -%>
