@@ -25,7 +25,7 @@ app.get("/results", (req, res) => {
     // we are grabbing the user query search
     let searchQuery = req.query.searchQuery;
     // axios request using the user query
-    axios.get("http://www.omdbapi.com/?i=tt3896198&apikey=" + process.env.API_KEY + "&s=" + searchQuery)
+    axios.get("https://www.omdbapi.com/?i=tt3896198&apikey=" + process.env.API_KEY + "&s=" + searchQuery)
     .then((response) => {
         let movies = response.data.Search;
         res.render("results", {movies: movies});
