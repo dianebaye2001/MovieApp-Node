@@ -3,10 +3,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
 const ejs = require("ejs");
+let path = require('path');
+
 
 const app = express();
 
 app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
@@ -16,37 +19,49 @@ app.get("/", (req, res) => {
     res.render("home");
 })
 
-app.get("/error", (req, res) => {
+/*app.get("/error", (req, res) => {
     res.render("error");
 })
+*/
+let api = process.env.API_KEY
 
 // this is the results route where we are going to fetch our api query results
 app.get("/results", (req, res) => {
     // we are grabbing the user query search
     let searchQuery = req.query.searchQuery;
     // axios request using the user query
-    axios.get("https://www.omdbapi.com/?i=tt3896198&apikey=" + process.env.API_KEY + "&s=" + searchQuery)
+    axios.get("http://www.omdbapi.com/?i=tt3896198&apikey=" + api + "&s=" + searchQuery)
     .then((response) => {
         let movies = response.data.Search;
         res.render("results", {movies: movies});
 
         })
-    .catch(() => {
-        res.redirect("/error")
+    .catch((error) => {
+        if(error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            res.render("error", {errorStatusCode: error.response.status});
+        }  
     })
 });
 
 app.get("/movies/:movie_id", (req, res) => {
     let movieID = req.params.movie_id;
     
-    axios.get("https://www.omdbapi.com/?apikey=e6b6fe9c&i=" + movieID)
+    axios.get("http://www.omdbapi.com/?apikey=" + api + "&i=" + movieID)
     .then((response) => {
         //console.log(response);
         let movie = response.data;
         res.render("movie", {movie: movie});
     })
-    .catch(() => {
-            res.redirect("/error")  
+    .catch((error) => {
+        if(error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            res.render("error", {errorStatusCode: error.response.status});
+        }  
     })
 })
 
