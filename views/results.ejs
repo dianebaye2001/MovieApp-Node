@@ -2,21 +2,26 @@
 
 <div class="container">
     <h2>Results</h2>
-    <div class="row" id="displayMovie">
+        <% if (movies !== undefined) { %>
+            <div class="row" id="displayMovie">
         <% movies.map((movie) => { %>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="thumbnail">
-                    <a href="/movies/<%=movie.imdbID%>"><img src="
-                        <% if(movie.Poster.length < 4){ %>
-                        /images/no-available.png
-                      <% } else{ %>  
-                        <%= movie.Poster %>
-                     <% } %>" alt="movie posters" class=""></a>
-                </div>
-                <h5><%=movie.Title%>(<%=movie.Year%>)</h5>
-                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="thumbnail">
+                        <a href="/movies/<%=movie.imdbID%>"><img src="
+                            <% if(movie.Poster.length < 4){ %>
+                            /images/no-available.png
+                        <% } else{ %>  
+                            <%= movie.Poster %>
+                        <% } %>" alt="movie posters" class=""></a>
+                    </div>
+                    <h5><%=movie.Title%>(<%=movie.Year%>)</h5>
+                </div>    
         <% }) %>
-    </div>
+            </div>
+        <% } else { %>
+            <div class="alert alert-info" role="alert">
+                No match found for your search, it might be that the movie you are looking for is not added yet or the title is too short, please <strong><a href="/" class="text-warning">Try again</a></strong>              </div>
+        <%} %>
 </div>
 
 <%- include("partials/footer") -%>

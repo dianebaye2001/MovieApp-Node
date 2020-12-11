@@ -23,14 +23,14 @@ app.get("/", (req, res) => {
     res.render("error");
 })
 */
-let api = process.env.API_KEY
+//let api = process.env.API_KEY
 
 // this is the results route where we are going to fetch our api query results
 app.get("/results", (req, res) => {
     // we are grabbing the user query search
     let searchQuery = req.query.searchQuery;
     // axios request using the user query
-    axios.get("http://www.omdbapi.com/?i=tt3896198&apikey=" + api + "&s=" + searchQuery)
+    axios.get("http://www.omdbapi.com/?i=tt3896198&apikey=" + process.env.API_KEY + "&s=" + searchQuery)
     .then((response) => {
         let movies = response.data.Search;
         res.render("results", {movies: movies});
@@ -49,7 +49,7 @@ app.get("/results", (req, res) => {
 app.get("/movies/:movie_id", (req, res) => {
     let movieID = req.params.movie_id;
     
-    axios.get("http://www.omdbapi.com/?apikey=" + api + "&i=" + movieID)
+    axios.get("http://www.omdbapi.com/?apikey=" + process.env.API_KEY + "&i=" + movieID)
     .then((response) => {
         //console.log(response);
         let movie = response.data;
